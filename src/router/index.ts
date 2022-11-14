@@ -1,7 +1,12 @@
 import { createRouter, createWebHistory } from "vue-router";
-import Main from "@/views/Main.vue";
-import NotFound from "@/views/NotFound.vue";
-import Profile from "@/views/Profile.vue";
+import Main from "@/views/Main/index.vue";
+import NotFound from "@/views/NotFound/index.vue";
+import Profile from "@/views/Profile/index.vue";
+import Auth from "@/views/Auth/index.vue";
+
+function lazyLoad(view: string) {
+  return () => import(`@/views/${view}/index.vue`);
+}
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
@@ -9,17 +14,22 @@ const router = createRouter({
     {
       path: "/",
       name: "main-page",
-      component: Main,
+      component: lazyLoad("Main"),
     },
     {
       path: "/profile",
       name: "profile-page",
-      component: Profile,
+      component: lazyLoad("Profile"),
+    },
+    {
+      path: "/auth/:page",
+      name: "auth-page",
+      component: lazyLoad("Auth"),
     },
     {
       path: "/:pathMatch(.*)*",
       name: "not-found",
-      component: NotFound,
+      component: lazyLoad("NotFound"),
     },
   ],
 });

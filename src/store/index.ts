@@ -1,9 +1,12 @@
-import { createStore } from "vuex";
+import Vuex, { createStore } from "vuex";
+import { ProfileModule } from "@/store/modules";
+import Vue, { InjectionKey } from "vue";
 
-export default createStore({
-  state: {},
-  getters: {},
-  mutations: {},
-  actions: {},
-  modules: {},
+export const store = new Vuex.Store({
+  modules: {
+    profile: ProfileModule,
+  },
 });
+
+export type Store = typeof store;
+export const key: InjectionKey<Store> = Symbol();

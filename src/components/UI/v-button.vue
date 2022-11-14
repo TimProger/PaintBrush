@@ -18,7 +18,10 @@ export default defineComponent({
 
 button
   padding 10px 20px
-  background none
+  background $block-sec
+  border-radius 1px
+  border none
   cursor pointer
+  color $text-third
 
 </style>
