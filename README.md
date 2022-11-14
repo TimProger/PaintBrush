@@ -1,4 +1,4 @@
-# paintbrush
+# PaintBrush
 
 ## Project setup
 ```
