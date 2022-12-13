@@ -55,7 +55,7 @@ export default {
 
   &__logo
     cursor pointer
-    color $text-sec
+    color $block-sec
 
   &__btns
     display flex

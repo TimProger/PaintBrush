@@ -1,13 +1,11 @@
 <template>
   <div class="app">
     <Navbar></Navbar>
-    <div class="wrapper">
-      <div v-if="!isLoading">
-        <router-view></router-view>
-      </div>
-      <div class="loading" v-else>
-        Loading
-      </div>
+    <div class="wrapper" v-if="!isLoading">
+      <router-view></router-view>
+    </div>
+    <div class="loading" v-else>
+      Loading
     </div>
   </div>
 </template>
@@ -83,7 +81,6 @@ body
 .wrapper
   display flex
   align-items center
-  justify-content center
   flex-direction column
   width: 1000px
   height: 100%;

@@ -2,7 +2,7 @@ import axios from "axios";
 
 const PORT: number = 8080;
 
-export const API_BASE_URL = "https://dream-design-server.herokuapp.com/api/";
+export const API_BASE_URL = "https://srv.petiteweb.dev/api/profile/";
 export const APP_BASE_URL = `http://localhost:${PORT}`;
 
 export const $api = axios.create({

@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import Main from "@/views/Main/index.vue";
 import NotFound from "@/views/NotFound/index.vue";
 import Profile from "@/views/Profile/index.vue";
+import UserPage from "@/views/UserPage/index.vue";
 import Auth from "@/views/Auth/index.vue";
 
 function lazyLoad(view: string) {
@@ -20,6 +21,10 @@ const router = createRouter({
       path: "/profile",
       name: "profile-page",
       component: lazyLoad("Profile"),
+    },
+    {
+      path: "/users/:_id",
+      component: lazyLoad("UserPage"),
     },
     {
       path: "/auth/:page",
