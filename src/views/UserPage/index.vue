@@ -1,26 +1,33 @@
 <template>
-  <div class="user__container">
-    <div v-if="!isUserLoading">
-      <h1>{{user.name}}</h1>
-      <h2>{{user.email}}</h2>
-      <div>
-
-      </div>
+  <div class="user__container" v-if="!isUserLoading">
+    <h1>{{user.name}}'s profile</h1>
+    <h2>{{user.email}}</h2>
+    <div v-if="user.portfolio.length > 0">
+      <h2>Portfolios</h2>
+      <portfolio-list
+        :portfolios="user.portfolio"
+        :user_id="user._id"
+      />
     </div>
   </div>
 </template>
 
-<script>
+<script lang="ts">
 
 import {useUser} from "@/hooks/useUser";
 import {useRoute} from "vue-router";
+import PortfolioList from "@/components/PortfolioList/index.vue";
 
 export default {
-  setup: (props) => {
+  components: {
+    PortfolioList
+  },
+
+  setup: () => {
     const route = useRoute();
     const id = route.params._id;
+    // @ts-ignore
     const {user, isUserLoading} = useUser(id);
-    console.log('user', user)
     return {
       user,
       isUserLoading,
@@ -33,10 +40,14 @@ export default {
 @import '@/App.vars.styl';
 @import '@/App.mixins.styl';
 
-.user__container
-  margin-top: 100px
-  color $text-third
-  display flex
-  width: 100%
+.user
+
+  &__container
+    margin-top: 100px
+    color $text-third
+    display flex
+    width: 100%
+    flex-direction column
+    gap 30px
 
 </style>

@@ -1,7 +1,10 @@
 <template>
-  <h1>Yo!</h1>
-  <div v-if="isLoggedIn">
-    <h1>{{ user.name }}</h1>
+  <div v-if="isLoggedIn" class="profile__container">
+    <h1>Profile</h1>
+    <div>
+      <h3>Name: {{ user.name }}</h3>
+      <h3>Email: {{ user.email }}</h3>
+    </div>
   </div>
 </template>
 
@@ -30,5 +33,15 @@
 <style lang="stylus" scoped>
 @import '@/App.vars.styl';
 @import '@/App.mixins.styl';
+
+.profile
+
+  &__container
+    width: 100%
+    margin-top: 100px
+    color $text-third
+    display flex
+    flex-direction column
+    gap 20px
 
 </style>

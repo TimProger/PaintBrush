@@ -2,29 +2,29 @@
   <div class="portfolio">
     <div class="portfolio__info">
       <h3>Info:</h3>
-      <div><strong>Name:</strong> {{ user.name }}</div>
-      <div><strong>Email:</strong> {{ user.email }}</div>
+      <div><strong>Title:</strong> {{ portfolio.title }}</div>
+      <div><strong>Description:</strong> {{ portfolio.description }}</div>
     </div>
-    <div v-if="user.portfolio.length > 0" class="portfolio__portfolio">
-      <h3>Portfolio:</h3>
-      <div><strong>Title:</strong> {{ user.portfolio[0].title }}</div>
-      <div><strong>Description:</strong> {{ user.portfolio[0].description }}</div>
-      <div><strong>Date:</strong> {{new Date(user.portfolio[0].date).toLocaleDateString()}}</div>
-    </div>
-    <v-button  @click="$router.push(`/users/${user._id}`)">Go</v-button>
+    <v-button  @click="$router.push(`/portfolio/${user_id}/${portfolio._id}`)">Checkout portfolio</v-button>
   </div>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import { PropType, defineComponent } from 'vue';
+import {IPortfolio} from "@/types/profile.types";
+export default defineComponent({
   name: 'portfolio-item',
   props: {
-    user: {
-      type: Object,
+    portfolio: {
+      type: Object as PropType<IPortfolio>,
       required: true,
+    },
+    user_id: {
+      type: String,
+      required: true
     }
   }
-}
+})
 </script>
 
 <style lang="stylus" scoped>
@@ -38,7 +38,8 @@ export default {
   display flex
   flex-direction column
   justify-content space-between
-  gap 20px
+  width 350px
+  gap 40px
 
   &__info
     display flex

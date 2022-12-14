@@ -1,7 +1,7 @@
 <template>
   <div class="main__container">
     <h1>Добро пожаловать на главную.</h1>
-    <portfolio-list
+    <user-list
         :users="users"
         v-if="!isUsersLoading"
     />
@@ -11,11 +11,11 @@
 <script>
 import { defineComponent } from 'vue'
 import {useUsers} from "@/hooks/useUsers";
-import PortfolioList from "@/components/PortfolioList/index";
+import UserList from "@/components/UserList/index";
 export default defineComponent({
   name: 'v-main',
   components: {
-    PortfolioList
+    UserList
   },
   setup(props) {
     const {users, isUsersLoading} = useUsers();
@@ -31,8 +31,10 @@ export default defineComponent({
 @import '@/App.vars.styl';
 @import '@/App.mixins.styl';
 
-.main__container
-  margin-top: 100px
-  color $text-third
+.main
+
+  &__container
+    margin-top: 100px
+    color $text-third
 
 </style>

@@ -1,11 +1,11 @@
 <template>
-  <div v-if="users.length > 0">
+  <div v-if="portfolios.length > 0">
     <transition-group name="portfolio-list">
       <portfolio-item
-          v-for="user in users"
-          :user="user"
-          :key="user._id"
-          @remove="$emit('remove', user)"
+          v-for="portfolio in portfolios"
+          :portfolio="portfolio"
+          :user_id="user_id"
+          :key="portfolio._id"
       />
     </transition-group>
   </div>
@@ -14,35 +14,29 @@
   </h2>
 </template>
 
-<script>
-import PortfolioItem from "@/components/PortfolioItem";
-export default {
+<script lang="ts">
+import { PropType, defineComponent } from 'vue';
+import PortfolioItem from "@/components/PortfolioItem/index.vue";
+import {IPortfolio} from "@/types/profile.types";
+
+export default defineComponent({
   name: 'portfolio-list',
   components: {PortfolioItem},
   props: {
-    users: {
-      type: Array,
+    portfolios: {
+      type: Array as PropType<IPortfolio[]>,
+      required: true
+    },
+    user_id: {
+      type: String,
       required: true
     }
+  },
+  setup: (props) => {
+    console.log(props)
   }
-}
+})
 </script>
 
 <style scoped>
-.user-list-item {
-  display: inline-block;
-  margin-right: 10px;
-}
-.user-list-enter-active,
-.user-list-leave-active {
-  transition: all 0.4s ease;
-}
-.user-list-enter-from,
-.user-list-leave-to {
-  opacity: 0;
-  transform: translateX(130px);
-}
-.user-list-move {
-  transition: transform 0.4s ease;
-}
 </style>

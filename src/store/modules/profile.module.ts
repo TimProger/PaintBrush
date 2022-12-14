@@ -1,13 +1,10 @@
-import { AxiosResponse } from "axios";
 import {
   IUser,
   IProfileModuleState,
   IRegisterForm,
   ILoginForm,
 } from "@/types/profile.types";
-import { Storage } from "@/utils/storage";
 import { $api } from "@/http";
-import { ResponseError, ResponseSuccess } from "@/types/http.types";
 
 export const ProfileModule = {
   name: "profile",
